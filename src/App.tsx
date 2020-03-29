@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import './App.css';
+import {BoardContainer} from "./components/borad/boardContainer";
 
 const App: FC = () => {
     return (
         <div className="App">
-            First Project
+            <BoardContainer/>
         </div>
     );
 };
