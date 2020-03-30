@@ -1,25 +1,27 @@
-import {addEvent} from "./eventActions";
 import {ADD_EVENT} from "./eventTypes";
+import data from '../../mockData/mock.json';
 
 export interface EventState {
-    EventList: []
+    EventList: object[]
 }
-
-const initialState: EventState = {
-    EventList: []
-};
 
 interface actionI {
     type: string,
-    payload:{}
+    payload: {}
 }
+
+const initialState: EventState = {
+    EventList: data.events
+};
 
 const eventReducer = (state: EventState = initialState, action: actionI) => {
     switch (action.type) {
         case ADD_EVENT:
+            const tempList = state.EventList;
+            tempList.push(action.payload);
             return {
                 ...state,
-                EventList: []// TODO: learn how to add new object to the array
+                EventList: tempList
             };
         default:
             return state

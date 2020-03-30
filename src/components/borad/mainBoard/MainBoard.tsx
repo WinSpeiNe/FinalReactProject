@@ -4,6 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {useStyles} from "../../../styles/styles";
+import {TodayTable} from "./Tables/TodayTable";
+import data from '../../../mockData/mock.json';
+const ev = JSON.stringify(data.events);
 
 export const MainBoard: FC = () => {
     const classes = useStyles();
@@ -22,6 +25,7 @@ export const MainBoard: FC = () => {
                 <div className={classes.toolbar}/>
                 <Typography paragraph>
                     <input/>//TODO: add search
+                    <TodayTable/>
                 </Typography>
                 <Typography paragraph>
                     <table/>//TODO: add the list of the tasks and the events

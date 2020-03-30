@@ -1,9 +1,10 @@
 // TODO: import the eventState and taskState from the reducers
-
+import {TaskState} from "../redux/tasks/taskReducer";
+import {EventState} from "../redux/events/eventReducer";
 
 export interface TaskEventState {
-    task: '', // TODO: put the taskState
-    event: '' // TODO: put the eventState
+    task: TaskState,
+    event: EventState
 }
 
 export const taskMiniStore = (state: TaskEventState) => state.task;
