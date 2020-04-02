@@ -1,2 +1,2 @@
-export {addEvent} from './events/eventActions.js';
-export {addTask} from './tasks/taskActions.js';
+export {addEvent, removeEvent} from './events/eventActions';
+export {addTask, removeTask} from './tasks/taskActions';
