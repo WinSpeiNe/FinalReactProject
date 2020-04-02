@@ -4,13 +4,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {useStyles} from "../../../styles/styles";
-import {TodayTable} from "./Tables/TodayTable";
-import data from '../../../mockData/mock.json';
-const ev = JSON.stringify(data.events);
+import {TodayTable} from "./Tables/Today/TodayTable";
+import {EventsTable} from "./Tables/Event/EventsTable";
+import {TasksTable} from "./Tables/Task/TasksTable";
+import {useSelector} from "react-redux";
+import {buttonsMiniStore, TodayTasksEventsState} from "../../MiniStore";
 
 export const MainBoard: FC = () => {
     const classes = useStyles();
-
+    const buttons = useSelector((state: TodayTasksEventsState) => buttonsMiniStore(state));
     return (
         <div className={classes.root}>
             <CssBaseline/>
@@ -25,10 +27,9 @@ export const MainBoard: FC = () => {
                 <div className={classes.toolbar}/>
                 <Typography paragraph>
                     <input/>//TODO: add search
-                    <TodayTable/>
-                </Typography>
-                <Typography paragraph>
-                    <table/>//TODO: add the list of the tasks and the events
+                    {buttons.isToday ? <TodayTable/> : null}
+                    {buttons.isTasks? <TasksTable/> : null}
+                    {buttons.isEvents? <EventsTable/> : null}
                 </Typography>
             </main>
         </div>

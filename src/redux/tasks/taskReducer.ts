@@ -1,13 +1,17 @@
-import {ADD_TASK} from "./taskTypes";
+import {ADD_TASK, REMOVE_TASK} from "./taskTypes";
 import data from '../../mockData/mock.json';
+import {TaskInterface} from "../../components/borad/mainBoard/Tables/Task/TasksInterface";
 
 export interface TaskState {
-    TaskList: object[]
+    TaskList: TaskInterface[]
 }
 
 interface actionI {
     type: string,
-    payload: {}
+    payload: {
+        id: string,
+        task: TaskInterface
+    }
 }
 
 const initialState: TaskState = {
@@ -17,11 +21,14 @@ const initialState: TaskState = {
 const taskReducer = (state: TaskState = initialState, action: actionI) => {
     switch (action.type) {
         case ADD_TASK:
-            const tempList = state.TaskList;
-            tempList.push(action.payload);
+            const tempList: TaskInterface[] = state.TaskList;
+            tempList.push(action.payload.task);
             return {
-                ...state,
                 TaskList: tempList
+            };
+        case REMOVE_TASK:
+            return {
+                TaskList: state.TaskList.filter(task => task.id !== action.payload.id)
             };
         default:
             return state
